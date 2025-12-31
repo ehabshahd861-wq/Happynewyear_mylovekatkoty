@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+  <meta charset="UTF-8">
+  <title>Happy New Year 2026 ❤️</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Arial', sans-serif;
+      background: linear-gradient(135deg, #ffccd5, #ffe0b2);
+      overflow: hidden;
+      text-align: center;
+    }
+    #countdown {
+      font-size: 2em;
+      margin-top: 20px;
+      color: #fff;
+      text-shadow: 2px 2px 5px #000;
+    }
+    #message {
+      font-size: 1.5em;
+      color: #fff;
+      margin-top: 50px;
+      display: none;
+    }
+    #card {
+      width: 200px;
+      height: 120px;
+      background: #ff69b4;
+      margin: 50px auto;
+      border-radius: 15px;
+      box-shadow: 0 0 20px #ff69b4;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-weight: bold;
+      font-size: 1.2em;
+      cursor: pointer;
+      transition: transform 0.3s;
+    }
+    #card:hover {
+      transform: scale(1.1);
+    }
+    .confetti {
+      position: fixed;
+      width: 10px;
+      height: 10px;
+      background: red;
+      top: 0;
+      animation: fall 3s linear infinite;
+    }
+    @keyframes fall {
+      0% {top: -10px; transform: rotate(0deg);}
+      100% {top: 100vh; transform: rotate(360deg);}
+    }
+  </style>
+</head>
+<body>
+
+  <div id="countdown">⏳ العد التنازلي للعام الجديد: 2026!</div>
+
+  <div id="card">اسحب الكرت 💌</div>
+
+  <div id="message">
+    كتكوتي ومزموزتي وحبيبي ❤️ إحنا داخلين 2026 سوا وبقالنا سنين مع بعض الأيام حلوة وأيام صعبة بس وجودك دايمًا أمان وراحة طول ما إنت جنبي عمري ما حسّيت إني لوحدي كل سنة وإنت اختياري وقلبي ومعاك السنة الجديدة أحلى ❤️
+  </div>
+
+  <audio id="music" autoplay loop>
+    <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+  </audio>
+
+  <script>
+    // ظهور الرسالة عند الضغط على الكرت
+    const card = document.getElementById('card');
+    const message = document.getElementById('message');
+
+    card.addEventListener('click', () => {
+      message.style.display = 'block';
+      createConfetti(50);
+    });
+
+    // confetti بسيطة
+    function createConfetti(num) {
+      for(let i=0;i<num;i++){
+        const confetti = document.createElement('div');
+        confetti.classList.add('confetti');
+        confetti.style.left = Math.random()*100 + 'vw';
+        confetti.style.background = `hsl(${Math.random()*360}, 100%, 50%)`;
+        document.body.appendChild(confetti);
+        setTimeout(()=>{confetti.remove()},3000);
+      }
+    }
+
+    // عد تنازلي للثواني
+    const countdown = document.getElementById('countdown');
+    let seconds = 10;
+    const interval = setInterval(()=>{
+      countdown.textContent = `⏳ العد التنازلي للعام الجديد: ${seconds} ثانية`;
+      seconds--;
+      if(seconds<0){
+        clearInterval(interval);
+        countdown.textContent = "🎉 سنة جديدة سعيدة! 🎉";
+        createConfetti(100);
+      }
+    },1000);
+  </script>
+
+</body>
+</html>
